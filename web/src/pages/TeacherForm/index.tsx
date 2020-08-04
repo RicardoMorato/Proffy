@@ -1,0 +1,7 @@
+import React from 'react';
+
+export default function TeacherForm() {
+  return (
+    <p>Dale boy!</p>
+  );
+}
