@@ -1,7 +1,11 @@
 import React from 'react';
 
+import PageHeader from '../../components/PageHeader';
+
 export default function TeacherForm() {
   return (
-    <p>Dale boy!</p>
+    <div id="page-teacher-form" className='container'>
+      <PageHeader />
+    </div>
   );
 }
