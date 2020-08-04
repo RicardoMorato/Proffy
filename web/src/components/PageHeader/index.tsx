@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 import logoIcon from '../../assets/images/logo.svg';
 import backIcon from '../../assets/images/icons/back.svg';
 
-export default function PageHeader() {
+interface PageHeaderProps {
+  title: string;
+}
+
+const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
   return (
     <header className="page-header">
         <div className="top-bar-container">
@@ -16,8 +20,10 @@ export default function PageHeader() {
         </div>
 
         <div className="header-content">
-          <strong>Estes são os proffys disponíveis.</strong>
+          <strong>{title}</strong>
         </div>
     </header>
   );
 }
+
+export default PageHeader;
