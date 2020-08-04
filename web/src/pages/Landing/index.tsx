@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import './Landing.scss';
+import './styles.css';
 import logoImg from '../../assets/images/logo.svg';
 import landingImg from '../../assets/images/landing.svg';
 
@@ -25,7 +25,7 @@ export default function Landing() {
             Estudar
           </a>
 
-          <a href="" className='study'>
+          <a href="" className='give-classes'>
             <img src={giveClassesIcon} alt="" />
             Dê aulas
           </a>
