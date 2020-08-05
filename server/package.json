@@ -2,9 +2,19 @@
   "name": "proffy-server",
   "version": "1.0.0",
   "description": "A server for the Proffy application",
-  "main": "index.js",
+  "main": "src/server.ts",
   "repository": "https://github.com/RicardoMorato/Proffy",
   "author": "Ricardo Morato <https://github.com/RicardoMorato>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "scripts": {
+    "start": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0-pre.56",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
