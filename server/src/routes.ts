@@ -2,6 +2,7 @@ import express from 'express';
 
 
 import db from './database/connection';
+import convertHourToMinutes from './utils/convertHourToMinutes';
 
 const routes = express.Router();
 
@@ -49,9 +50,14 @@ routes.post('/classes', async (req, res) => {
 
   const classSchedule = schedule.map((item: scheduleItem) => {
     return {
+      class_id,
       week_day: item.week_day,
+      from: convertHourToMinutes(item.from),
+      to: convertHourToMinutes(item.to),
     };
   });
+
+  await db('class_schedule').insert(classSchedule);
 
   return res.json({
     Message: "User created!",
