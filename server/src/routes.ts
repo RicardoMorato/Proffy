@@ -1,67 +1,71 @@
-import express from 'express';
+import express, { response } from "express";
 
-
-import db from './database/connection';
-import convertHourToMinutes from './utils/convertHourToMinutes';
+import db from "./database/connection";
+import convertHourToMinutes from "./utils/convertHourToMinutes";
 
 const routes = express.Router();
 
 interface scheduleItem {
-  week_day: number,
-  from: string,
-  to: string
+  week_day: number;
+  from: string;
+  to: string;
 }
 
-routes.get('/', (req, res) => {
+routes.get("/", (req, res) => {
   res.json({
-    App: 'Proffy API',
-    Status: 'Development',
-    Author: 'Ricardo Morato <https://github.com/RicardoMorato>',
+    App: "Proffy API",
+    Status: "Development",
+    Author: "Ricardo Morato <https://github.com/RicardoMorato>",
   });
 });
 
-routes.post('/classes', async (req, res) => {
-  const {
-    name,
-    avatar,
-    whatsapp,
-    bio,
-    subject,
-    cost,
-    schedule,
-  } = req.body;
+routes.post("/classes", async (req, res) => {
+  const { name, avatar, whatsapp, bio, subject, cost, schedule } = req.body;
 
-  const insertedUsersIds = await db('users').insert({
-    name,
-    avatar,
-    whatsapp,
-    bio,
-  });
+  const trx = await db.transaction();
 
-  const user_id = insertedUsersIds[0];
+  try {
+    const insertedUsersIds = await trx("users").insert({
+      name,
+      avatar,
+      whatsapp,
+      bio,
+    });
 
-  const insertedClassesIds = await db('classes').insert({
-    subject,
-    cost,
-    user_id,
-  });
+    const user_id = insertedUsersIds[0];
 
-  const class_id = insertedClassesIds[0];
+    const insertedClassesIds = await trx("classes").insert({
+      subject,
+      cost,
+      user_id,
+    });
 
-  const classSchedule = schedule.map((item: scheduleItem) => {
-    return {
-      class_id,
-      week_day: item.week_day,
-      from: convertHourToMinutes(item.from),
-      to: convertHourToMinutes(item.to),
-    };
-  });
+    const class_id = insertedClassesIds[0];
 
-  await db('class_schedule').insert(classSchedule);
+    const classSchedule = schedule.map((item: scheduleItem) => {
+      return {
+        class_id,
+        week_day: item.week_day,
+        from: convertHourToMinutes(item.from),
+        to: convertHourToMinutes(item.to),
+      };
+    });
 
-  return res.json({
-    Message: "User created!",
-  });
+    await trx("class_schedule").insert(classSchedule);
+
+    await trx.commit();
+
+    return res.status(201).json({
+      Message: "Class created",
+    });
+  } catch (err) {
+    await trx.rollback();
+
+    return res.status(400).json({
+      Message: 'Unexpected error while creating new class',
+      error: err,
+    });
+  }
 });
 
 export default routes;
