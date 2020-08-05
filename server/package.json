@@ -1,0 +1,10 @@
+{
+  "name": "proffy-server",
+  "version": "1.0.0",
+  "description": "A server for the Proffy application",
+  "main": "index.js",
+  "repository": "https://github.com/RicardoMorato/Proffy",
+  "author": "Ricardo Morato <https://github.com/RicardoMorato>",
+  "license": "MIT",
+  "private": false
+}
