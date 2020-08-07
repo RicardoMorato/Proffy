@@ -72,7 +72,7 @@ export default function TeacherForm() {
 
           {scheduleItems.map((item) => {
             return (
-              <div className="schedule-item">
+              <div key={item.weekDay} className="schedule-item">
                 <AppSelect
                   name="week-day"
                   label="Dia da semana"
