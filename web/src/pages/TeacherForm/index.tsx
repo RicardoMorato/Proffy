@@ -29,19 +29,35 @@ export default function TeacherForm() {
         <fieldset>
           <legend>Sobre a aula</legend>
 
-          <AppSelect name="subject" label="Matéria" />
+          <AppSelect
+            name="subject"
+            label="Matéria"
+            options={[
+              { value: "Artes", label: "Artes" },
+              { value: "Programação", label: "Programação" },
+              { value: "Física", label: "Física" },
+              { value: "Química", label: "Química" },
+              { value: "Matemática", label: "Matemática" },
+              { value: "Cálculo", label: "Cálculo" },
+              { value: "Álgebra Linear", label: "Álgebra Linear" },
+              { value: "Astronomia", label: "Astronomia" },
+              { value: "Geografia", label: "Geografia" },
+              { value: "Literatura", label: "Literatura" },
+              { value: "História", label: "História" },
+              { value: "Biologia", label: "Biologia" },
+              { value: "Inglês", label: "Inglês" },
+            ]}
+          />
           <AppInput name="cost" label="Custo da sua hora por aula" />
         </fieldset>
 
         <footer>
           <p>
             <img src={warningIcon} alt="Aviso importante" />
-            Importante! <br/>
+            Importante! <br />
             Preencha todos os dados
           </p>
-          <button type="button">
-            Salvar cadastro
-          </button>
+          <button type="button">Salvar cadastro</button>
         </footer>
       </main>
     </div>
