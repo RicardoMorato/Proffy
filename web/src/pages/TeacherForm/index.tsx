@@ -1,11 +1,12 @@
 import React from "react";
 
 import PageHeader from "../../components/PageHeader";
-import "./styles.css";
 import AppInput from "../../components/AppInput";
-
 import warningIcon from "../../assets/images/icons/warning.svg";
 import AppTextarea from "../../components/AppTextarea";
+import AppSelect from "../../components/AppSelect";
+
+import "./styles.css";
 
 export default function TeacherForm() {
   return (
@@ -28,7 +29,7 @@ export default function TeacherForm() {
         <fieldset>
           <legend>Sobre a aula</legend>
 
-          <AppInput name="subject" label="Matéria" />
+          <AppSelect name="subject" label="Matéria" />
           <AppInput name="cost" label="Custo da sua hora por aula" />
         </fieldset>
 
