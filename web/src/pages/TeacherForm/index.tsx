@@ -5,6 +5,7 @@ import "./styles.css";
 import AppInput from "../../components/AppInput";
 
 import warningIcon from "../../assets/images/icons/warning.svg";
+import AppTextarea from "../../components/AppTextarea";
 
 export default function TeacherForm() {
   return (
@@ -21,6 +22,7 @@ export default function TeacherForm() {
           <AppInput name="name" label="Nome completo" />
           <AppInput name="avatar" label="Avatar" />
           <AppInput name="whatsapp" label="Whatsapp" />
+          <AppTextarea name="bio" label="Biografia" />
         </fieldset>
 
         <fieldset>
