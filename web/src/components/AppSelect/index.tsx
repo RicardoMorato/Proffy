@@ -20,8 +20,10 @@ const AppSelect: React.FC<SelectProps> = ({
   return (
     <div className="select-block">
       <label htmlFor={name}>{label}</label>
-      <select name={name} id={name} {...rest}>
-        <option value="" disabled selected hidden>Selecione uma opção</option>
+      <select defaultValue="" name={name} id={name} {...rest}>
+        <option value="" disabled hidden>
+          Selecione uma opção
+        </option>
 
         {options.map((item) => {
           return (
