@@ -30,8 +30,6 @@ export default function TeacherList() {
       },
     });
 
-    console.log(response.data);
-
     setTeachers(response.data);
     setFiltersVisible(false);
   }
